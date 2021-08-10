@@ -43,7 +43,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <MainLayout>
-        <AnimatedSwitch
+          <AnimatedSwitch
             atEnter={{opacity: 0, top: 200 }}
             atLeave={{opacity: 0}}
             atActive={{opacity: 1, top: 0}}
