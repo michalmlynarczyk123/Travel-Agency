@@ -1,6 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import TripSummary from './TripSummary';
+import { promoPrice } from '../../../utils/promoPrice';
 
 describe('Component TripSummary', () => {
 
@@ -8,7 +9,7 @@ describe('Component TripSummary', () => {
     const expectedId = 'abc';
     const expectedLink = '/trip/abc';
     const expectedName = 'alt';
-    const expectedCost = '100';
+    const expectedCost = '20';
     const expectedDays = 7;
     const expectedTags = ['tag1', 'tag2', 'tag3'];
 
@@ -45,8 +46,10 @@ describe('Component TripSummary', () => {
     const renderedName = component.find('.title').text();
     expect(renderedName).toEqual(expectedName);
 
-    const renderedDaysAndCost = component.find('.details').text();
-    expect(renderedDaysAndCost).toEqual(`${expectedDays} daysfrom ${expectedCost}`);
+    const renderedDaysAndCost = component.find('.details').childAt(0).text();
+    expect(renderedDaysAndCost).toEqual(`${expectedDays} days`);
+
+    expect(component.find('.details').childAt(1).text()).toEqual(`Price from: ${promoPrice(expectedCost, 20)}`);
 
   });
 
